@@ -1,13 +1,7 @@
 fileFormatVersion: 2
-guid: 3ad9e5b6156d34c6085c095a9f1d6d09
+guid: c57a9b27062a6204ca663d89e01c8b2e
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -16403020749659006
-    second: Wallside_KG_1_0
-  - first:
-      213: 2084774981522993465
-    second: Wallside_KG_1_1
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -49,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -114,62 +108,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Wallside_KG_1_0
-      rect:
-        serializedVersion: 2
-        x: 27
-        y: 5
-        width: 57
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 28429fe1a89b5cff0800000000000000
-      internalID: -16403020749659006
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Wallside_KG_1_1
-      rect:
-        serializedVersion: 2
-        x: 126
-        y: 5
-        width: 58
-        height: 57
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 931bc42dccb9eec10800000000000000
-      internalID: 2084774981522993465
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Wallside_KG_1_0: -16403020749659006
-      Wallside_KG_1_1: 2084774981522993465
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
