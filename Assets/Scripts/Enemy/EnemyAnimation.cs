@@ -13,6 +13,8 @@ public class EnemyAnimation : MonoBehaviour
     [SerializeField] private bool enemyHasSecondAttack = false;
     int currentAttack = 0;
 
+    private bool animationCoolDown = false;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -29,21 +31,24 @@ public class EnemyAnimation : MonoBehaviour
     public void UpdateActionState()
     {
         MovementState state = MovementState.attack1;
-        //if (enemyHasSecondAttack)
-        //{
-        //    if (currentAttack == 0)
-        //    {
-        //        state = MovementState.attack1;
-        //        currentAttack = 1;
-        //    }else
-        //    {
-        //        state = MovementState.attack2;
-        //        currentAttack = 0;
-        //    }
-        //}
+        if (enemyHasSecondAttack)
+        {
+            if (animationCoolDown)
+            {
+                state = MovementState.attack1;
+           
+            }
+            else 
+            {
+                state = MovementState.attack2;
+                
+            }
+        }
 
         int stateValue = (int)state;
         animator.SetInteger("state", stateValue);
+       if(!animationCoolDown)
+            StartCoroutine(CheckCurrentAnimation());
     }
 
     public void UpdateAnimationState()
@@ -65,5 +70,13 @@ public class EnemyAnimation : MonoBehaviour
 
         int stateValue = (int)state;
         animator.SetInteger("state", stateValue);
+    }
+
+    private IEnumerator CheckCurrentAnimation()
+    {
+        yield return new WaitForSeconds(2);
+
+        //currentAttack = currentAttack == 0 ? 1 : 0;
+        animationCoolDown = !animationCoolDown;
     }
 }
