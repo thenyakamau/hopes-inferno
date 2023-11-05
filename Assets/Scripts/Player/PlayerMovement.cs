@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 14f;
 
-    private enum MovementState { idle, running, jumping, falling , hurt, blocking , attacking ,death}
+    public enum MovementState { idle, running, jumping, falling , blocking, hurt, attacking ,death}
 
     // Start is called before the first frame update
     private void Start()
@@ -42,7 +42,25 @@ public class PlayerMovement : MonoBehaviour
             rigidBody.velocity = new Vector2(velocityX, jumpForce);
         }
 
-        UpdateAnimationState();
+        if (Input.GetButtonDown("Fire1"))
+        {
+            int stateValue = (int) MovementState.attacking;
+            animator.SetInteger("state", stateValue);
+        } else if(Input.GetButton("Fire2"))
+        {
+            int stateValue = (int)MovementState.blocking;
+            animator.SetInteger("state", stateValue);
+        }
+        else 
+
+            UpdateAnimationState();
+    }
+
+    public void UpdateDamageAnimation(MovementState currentMovementState)
+    {
+        int stateValue = (int)currentMovementState;
+        animator.SetInteger("state", stateValue);
+
     }
 
     private void UpdateAnimationState()

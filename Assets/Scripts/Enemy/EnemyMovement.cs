@@ -12,19 +12,65 @@ public class EnemyMovement : MonoBehaviour
 
     private EnemyAnimation enemyAnimation;
 
+    public enum MovementState { idle, running, attack1, attack2 }
+
+
+    private SpriteRenderer spriteRenderer;
+    private Animator animator;
+
     private void Start()
     {
         enemyAnimation = GetComponent<EnemyAnimation>();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
-    private  void FixedUpdate()
+    //private  void FixedUpdate()
+    //{
+    //    if (PlayerInSight())
+    //    {
+    //        UpdateActionState();
+    //    }else
+    //    {
+    //        MovementState state = MovementState.idle;
+
+    //        int stateValue = (int)state;
+    //        animator.SetInteger("state", stateValue);
+
+    //    }
+    //}
+
+    public void UpdateActionState(MovementState currentState)
     {
-        if (PlayerInSight())
-        {
-            enemyAnimation.UpdateActionState();
-        }
+       
+        int stateValue = (int)currentState;
+        animator.SetInteger("state", stateValue);
+
     }
+
+    public void UpdateAnimationState()
+    {
+        // Else statement is not required here because initial state is set
+        float directionX = Input.GetAxisRaw("Horizontal");
+        MovementState state = MovementState.idle;
+
+        if (directionX > 0f)
+        {
+            state = MovementState.running;
+            spriteRenderer.flipX = false;
+        }
+        else if (directionX < 0f)
+        {
+            state = MovementState.running;
+            spriteRenderer.flipX = true;
+        }
+
+        int stateValue = (int)state;
+        animator.SetInteger("state", stateValue);
+    }
+
 
     public bool PlayerInSight()
     {

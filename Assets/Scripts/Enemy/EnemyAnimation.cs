@@ -7,19 +7,11 @@ public class EnemyAnimation : MonoBehaviour
 
     private enum MovementState { idle, running, attack1, attack2 }
 
-    private SpriteRenderer spriteRenderer;
-    private Animator animator;
-
-    [SerializeField] private bool enemyHasSecondAttack = false;
-    int currentAttack = 0;
-
-    private bool animationCoolDown = false;
 
     // Start is called before the first frame update
     private void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+    
     }
 
     // Update is called once per frame
@@ -28,55 +20,4 @@ public class EnemyAnimation : MonoBehaviour
         
     }
 
-    public void UpdateActionState()
-    {
-        MovementState state = MovementState.attack1;
-        if (enemyHasSecondAttack)
-        {
-            if (animationCoolDown)
-            {
-                state = MovementState.attack1;
-           
-            }
-            else 
-            {
-                state = MovementState.attack2;
-                
-            }
-        }
-
-        int stateValue = (int)state;
-        animator.SetInteger("state", stateValue);
-       if(!animationCoolDown)
-            StartCoroutine(CheckCurrentAnimation());
-    }
-
-    public void UpdateAnimationState()
-    {
-        // Else statement is not required here because initial state is set
-        float directionX = Input.GetAxisRaw("Horizontal");
-        MovementState state = MovementState.idle;
-
-        if (directionX > 0f)
-        {
-            state = MovementState.running;
-            spriteRenderer.flipX = false;
-        }
-        else if (directionX < 0f)
-        {
-            state = MovementState.running;
-            spriteRenderer.flipX = true;
-        }
-
-        int stateValue = (int)state;
-        animator.SetInteger("state", stateValue);
-    }
-
-    private IEnumerator CheckCurrentAnimation()
-    {
-        yield return new WaitForSeconds(2);
-
-        //currentAttack = currentAttack == 0 ? 1 : 0;
-        animationCoolDown = !animationCoolDown;
-    }
 }
