@@ -52,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
             animator.SetInteger("state", stateValue);
         }
         else 
-
             UpdateAnimationState();
     }
 

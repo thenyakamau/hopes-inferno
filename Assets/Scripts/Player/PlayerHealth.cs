@@ -21,6 +21,14 @@ public class PlayerHealth : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Trap")
+        {
+            TakeDamage(0.5f);
+        }
+    }
+
     public void TakeDamage(float _damage)
     {
         if (Input.GetButton("Fire2"))
@@ -34,6 +42,7 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
+            Debug.Log("Dead player here");
             if (!isDead)
             {
                 playerMovement.UpdateDamageAnimation(PlayerMovement.MovementState.death);
